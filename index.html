@@ -2,38 +2,80 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>keyboard</title>
     <link rel="stylesheet" href="./style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;1,100;1,300;1,400&display=swap" rel="stylesheet">
-    <title>Todo</title>
 </head>
 <body>
-    <div class="ToDoApp">
-        <h2>To do list</h2>
-        <div class="section">
-            <form>
-                <input type="text" id="textInput" placeholder="Add Item" class="inputArea">
-                <input type="button" id="addBtn" value="Add" class="addButton">
-            </form>
-            <div class="listTodo">
-                <label class="op active" >
-                    <input type="radio" name="active" data-targets="All"  checked>
-                    All
-                </label>
-                <label class="op" >
-                    <input type="radio" name="active"  data-targets="Activ">
-                    Active
-                </label>
-                <label class="op">
-                    <input type="radio" name="active" data-targets="Complete">
-                    Complete
-                </label>
+    <input type="text" placeholder="Test Your keyboard " id="search-input">
+    <div class="keyboard"  id="keyboard">
+        <div class="buttons" >
+            <div class="line" id="firstLine">
+                <button class="ESC" value="ESC" data-ascii="27">ESC</button>
+                <button class="char" value="1" data-ascii="49">1</button>
+                <button class="char" value="2" data-ascii="50">2</button>
+                <button class="char" value="3" data-ascii="51">3</button>
+                <button class="char" value="4" data-ascii="52">4</button>
+                <button class="char" value="5" data-ascii="53">5</button>
+                <button class="char" value="6" data-ascii="54">6</button>
+                <button class="char" value="7" data-ascii="55">7</button>
+                <button class="char" value="8" data-ascii="56">8</button>
+                <button class="char" value="9" data-ascii="57">9</button>
+                <button class="char" value="0" data-ascii="48">0</button>
+                <button  value="m" data-ascii="189">-</button>
+                <button  value="p" data-ascii="187">=</button>
+                <button class="BACK" value="BACK" data-ascii="8">BACK</button>
             </div>
-            <div class="todoListSection">
-                <ul class="list-unstyled " id="list" >
-                </ul>
+            <div class="line" id="secondLine">
+                <button class="TAB" value="TAB" data-ascii="9">TAB</button>
+                <button class="char" value="q" data-ascii="81">q</button>
+                <button class="char" value="w" data-ascii="87">w</button>
+                <button class="char" value="e" data-ascii="69">e</button>
+                <button class="char" value="r" data-ascii="82">r</button>
+                <button class="char" value="t" data-ascii="84">t</button>
+                <button class="char" value="y" data-ascii="89">y</button>
+                <button class="char" value="u" data-ascii="85">u</button>
+                <button class="char" value="i" data-ascii="73">i</button>
+                <button class="char" value="o" data-ascii="79">o</button>
+                <button class="char" value="p" data-ascii="80">p</button>
+                <button class="char" value="left" data-ascii="219">[</button>
+                <button  value="right" data-ascii="221">]</button>
+                <button  value="p" data-ascii="220">\</button>
             </div>
+            <div class="line" id="thirdLine">
+                <button class="CAPS" value="CAPS" data-ascii="20">CAPS</button>
+                <button class="char" value="a" data-ascii="65">a</button>
+                <button class="char" value="s" data-ascii="83">s</button>
+                <button class="char" value="d" data-ascii="68">d</button>
+                <button class="char" value="f" data-ascii="70">f</button>
+                <button class="char" value="g" data-ascii="71">g</button>
+                <button class="char" value="h" data-ascii="72">h</button>
+                <button class="char" value="j" data-ascii="74">j</button>
+                <button class="char" value="k" data-ascii="75">k</button>
+                <button class="char" value="l" data-ascii="76">l</button>
+                <button class="char" value="" data-ascii="186">:</button>
+                <button class="char" value="" data-ascii="222">"</button>
+                <button class="ENTER" value="ENTER" data-ascii="13">ENTER</button>
+            </div>
+            <div class="line" id="fourthLine">
+                <button class="SHIFT" value="SHIFT" data-ascii="16">
+                    SHIFT
+                </button>
+                <button class="char" value="z" data-ascii="90">z</button>
+                <button class="char" value="x" data-ascii="88">x</button>
+                <button class="char" value="c" data-ascii="67">c</button>
+                <button class="char" value="v" data-ascii="86">v</button>
+                <button class="char" value="b" data-ascii="66">b</button>
+                <button class="char" value="n" data-ascii="78">n</button>
+                <button class="char" value="m" data-ascii="77">m</button>
+                <button  value="," data-ascii="188">,</button>
+                <button  value="." data-ascii="190">.</button>
+                <button  value="/" data-ascii="191">/</button>
+                <button class="SHIFT" value="SHIFT" data-ascii="16">
+                    SHIFT
+                </button>
+
+            </div>
+
         </div>
     </div>
     <script src="index.js"></script>

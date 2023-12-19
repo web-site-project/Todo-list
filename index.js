@@ -1,92 +1,84 @@
-const textIn = document.getElementById("textInput"),
-      addBtn  = document.getElementById("addBtn"),
-      list   = document.querySelector(".list-unstyled"),
-      listTodo = document.querySelectorAll(".listTodo");
+const lines = document.querySelectorAll(".buttons .line"),
+      btns = document.querySelectorAll("button"),
+      search_input = document.getElementById("search-input"),
+      cap = document.querySelector(".CAPS");
+let caps = true;
+let shift = true;
 
-let datas = [];
-let ch ;
 
-localStorage.getItem("datas") ? datas = JSON.parse(localStorage.getItem("datas")) : null ;
-
-addToLocal = () => localStorage.setItem("datas" , JSON.stringify(datas));
-
-let elements = (Checks , Id , Values) => {
-     return `<li class=" bg-light ">
-                <div class="toDoSection">
-                    <p class="h-auto " id="${Id}" onclick="completed(event)" data-check="${Checks}">${Values}</p>
-                </div> 
-                <div class="remove" >
-                    <i class="fa-solid fa-trash-can" onclick="delte(event)" id="${Id}"></i>
-                </div>
-            </li>
-        `
-} 
-
-let showData = () => list.innerHTML = datas.map((x) => elements(x.Checks , x.Id , x.Values)).join("")
-
-let showPiece = () =>{
-    if(ch == null){
-        showData();
-    }else if(ch == false){
-        list.innerHTML = datas.map(x => x.Checks == false ? elements(x.Checks , x.Id , x.Values) : null ).join("")
-    }else{
-        list.innerHTML = datas.map(x => x.Checks == true ? elements(x.Checks , x.Id , x.Values) : null).join("")
-    }
-
-    addToLocal();
+let upperCase = () => btns.forEach(v => v.innerHTML =  v.innerHTML.toString().toUpperCase());
+let lowerCase = () => btns.forEach(v => v.innerHTML =  v.innerHTML.toString().toLowerCase());
+let shiftFun  = () => {
+   if(caps){
+      
+      shift ? upperCase() : lowerCase();
+      
+      shift = !shift;
+   }
 }
 
-addBtn.onclick = () => {
-    if(textIn.value === ""){
-        alert("the input should not be empty");
-    }else{
+let capsFun = () => {
 
-        datas.push({
-            Values: textIn.value ,
-             Checks : false ,
-              Id : Date.now()
-            });
-        showPiece();
-    }
-    
-    textIn.value = "";
-}
+   caps ? upperCase() : lowerCase();
 
-completed = (e) =>{
+   caps = !caps;
 
-    let ev = e.target;
+   caps ? cap.classList.remove("active") :  cap.classList.add("active");
 
-    datas.map((x) => x.Id == ev.id ? x.Checks = !x.Checks: null )
-
-    showPiece();   
 }
 
 
-delte = (e) => {
 
-    let ev = e.target;
+window.addEventListener("keydown" , e => {
+   let d = e.keyCode;
+   search_input.focus();
 
-    datas = datas.filter((x) => x.Id != ev.id)
+   for(let i = 0 ; i < 100 ; i++){
+      if(btns[i].dataset.ascii == d){
+         btns[i].classList.add("click");
+         this.setTimeout(() =>{ 
+            btns[i].classList.remove("click")
+         }, 100);
 
-    showPiece();  
-}
 
-listTodo.forEach(x => {
-    x.addEventListener("click" , event =>{
-        let ev = event.target;
-        if(ev.dataset.targets == "All"){
-            showData();
-            ch = null;
-        }else if(ev.dataset.targets == "Activ"){
-            list.innerHTML = datas.map(x => x.Checks == false ? elements(x.Checks , x.Id , x.Values) : null ).join("")
-            ch = false;
-        }else{
-            list.innerHTML = datas.map(x => x.Checks == true ? elements(x.Checks , x.Id , x.Values) : null).join("")
-            ch = true;
-        }
-    })
+         if(btns[i].dataset.ascii == 20 ){
+            capsFun();
+         }
 
+                  
+         if(btns[i].dataset.ascii == 16){
+            shift ? upperCase() : lowerCase();
+      
+      shift = !shift;
+         }
+      }
+   }
 })
+ 
+lines.forEach(x => {
+      x.addEventListener('click' , event =>{
+         search_input.focus();
+         let key_action = event.target ;
+         if(key_action.innerHTML.length < 2 ){
+            search_input.value += event.target.innerHTML ;
+
+            shift ? null : lowerCase();
+
+            shift ? null : shift = !shift;
+         }else if(key_action.value === "SHIFT"){
+            shiftFun();
+         }else if(key_action.value === "BACK"){
+            search_input.value = search_input.value.substring(0 , search_input.value.length - 1 )
+         }else if(key_action.value === "ENTER"){
+            // write code to do ENTER function
+         }else if(key_action.value === "TAB"){
+            // write code to do TAB function
+         }else if(key_action.value === "CAPS"){
+            capsFun();
+         }
+      })
+
+});
 
 
-showData();
+
